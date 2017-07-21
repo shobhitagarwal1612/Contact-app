@@ -4,7 +4,7 @@ package android.com.kisannetwork.model;
  * Created by shobhit on 21/7/17.
  */
 
-public class Contacts {
+public class Contact {
 
     private int index;
     private String firstName;
@@ -88,4 +88,7 @@ public class Contacts {
         this.age = age;
     }
 
+    public String getName() {
+        return firstName + " " + lastName;
+    }
 }
