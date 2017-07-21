@@ -5,17 +5,13 @@ package android.com.kisannetwork.adapters;
  */
 
 
-import android.com.kisannetwork.fragments.PlaceholderFragment;
+import android.com.kisannetwork.fragments.ContactsFragment;
+import android.com.kisannetwork.fragments.SentSMSFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-/**
- * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
-    private final int PAGE_COUNT = 2;
 
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -23,14 +19,18 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+        switch (position) {
+            case 0:
+                return ContactsFragment.newInstance(position + 1);
+            case 1:
+                return SentSMSFragment.newInstance(position + 1);
+        }
+        return null;
     }
 
     @Override
     public int getCount() {
-        return PAGE_COUNT;
+        return 2;
     }
 
     @Override

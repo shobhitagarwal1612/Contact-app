@@ -1,9 +1,5 @@
 package android.com.kisannetwork.fragments;
 
-/**
- * Created by shobhit on 21/7/17.
- */
-
 import android.com.kisannetwork.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,22 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class PlaceholderFragment extends Fragment {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
+/**
+ * Created by shobhit on 21/7/17.
+ */
+
+public class ContactsFragment extends Fragment {
+
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    public PlaceholderFragment() {
+    public ContactsFragment() {
+
     }
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
-    public static PlaceholderFragment newInstance(int sectionNumber) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+    public static ContactsFragment newInstance(int sectionNumber) {
+        ContactsFragment fragment = new ContactsFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -43,4 +37,3 @@ public class PlaceholderFragment extends Fragment {
         return rootView;
     }
 }
-
