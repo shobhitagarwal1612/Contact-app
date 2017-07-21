@@ -2,6 +2,7 @@ package android.com.kisannetwork.fragments;
 
 import android.com.kisannetwork.R;
 import android.com.kisannetwork.adapters.ContactsAdapter;
+import android.com.kisannetwork.listeners.ClickListener;
 import android.com.kisannetwork.model.Contact;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
  * Created by shobhit on 21/7/17.
  */
 
-public class ContactsFragment extends Fragment {
+public class ContactsFragment extends Fragment implements ClickListener {
 
     ArrayList<Contact> contacts;
 
@@ -42,7 +43,7 @@ public class ContactsFragment extends Fragment {
 
         loadData();
 
-        ContactsAdapter adapter = new ContactsAdapter(getContext(), contacts);
+        ContactsAdapter adapter = new ContactsAdapter(getContext(), contacts, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return rootView;
@@ -89,5 +90,10 @@ public class ContactsFragment extends Fragment {
             return null;
         }
         return json;
+    }
+
+    @Override
+    public void onClick(ContactsAdapter.ViewHolder viewHolder) {
+
     }
 }

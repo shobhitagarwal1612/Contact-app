@@ -1,5 +1,6 @@
-package android.com.kisannetwork;
+package android.com.kisannetwork.activities;
 
+import android.com.kisannetwork.R;
 import android.com.kisannetwork.adapters.SectionsPagerAdapter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

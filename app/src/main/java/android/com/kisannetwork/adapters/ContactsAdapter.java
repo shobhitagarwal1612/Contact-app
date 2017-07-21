@@ -1,6 +1,7 @@
 package android.com.kisannetwork.adapters;
 
 import android.com.kisannetwork.R;
+import android.com.kisannetwork.listeners.ClickListener;
 import android.com.kisannetwork.model.Contact;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -22,20 +23,20 @@ public class ContactsAdapter extends
         RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
 
 
-    // Store a member variable for the contacts
-    private List<Contact> mContacts;
-    // Store the context for easy access
-    private Context mContext;
+    private final ClickListener listener;
+    private List<Contact> contacts;
+    private Context context;
 
     // Pass in the contact array into the constructor
-    public ContactsAdapter(Context context, List<Contact> contacts) {
-        mContacts = contacts;
-        mContext = context;
+    public ContactsAdapter(Context context, List<Contact> contacts, ClickListener listener) {
+        this.contacts = contacts;
+        this.context = context;
+        this.listener = listener;
     }
 
     // Easy access to the context object in the recyclerview
     private Context getContext() {
-        return mContext;
+        return context;
     }
 
     @Override
@@ -54,7 +55,7 @@ public class ContactsAdapter extends
     @Override
     public void onBindViewHolder(ContactsAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
-        Contact contact = mContacts.get(position);
+        Contact contact = contacts.get(position);
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
@@ -66,12 +67,12 @@ public class ContactsAdapter extends
     // Returns the total count of items in the list
     @Override
     public int getItemCount() {
-        return mContacts.size();
+        return contacts.size();
     }
 
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         TextView nameTextView;
@@ -86,6 +87,13 @@ public class ContactsAdapter extends
 
             nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
             messageButton = (Button) itemView.findViewById(R.id.message_button);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onClick(ViewHolder.this);
+                }
+            });
         }
     }
 }
