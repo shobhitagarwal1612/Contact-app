@@ -34,6 +34,16 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        // configure icons
+        int[] imageResId = {
+                R.drawable.ic_contacts_black_24dp,
+                R.drawable.ic_textsms_black_24dp
+        };
+
+        for (int i = 0; i < imageResId.length; i++) {
+            tabLayout.getTabAt(i).setIcon(imageResId[i]);
+        }
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
