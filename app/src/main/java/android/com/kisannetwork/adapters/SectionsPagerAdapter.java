@@ -5,6 +5,7 @@ package android.com.kisannetwork.adapters;
  */
 
 
+import android.com.kisannetwork.R;
 import android.com.kisannetwork.fragments.PlaceholderFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +16,8 @@ import android.support.v4.app.FragmentPagerAdapter;
  * one of the sections/tabs/pages.
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    final int PAGE_COUNT = 2;
+    private int tabIcons[] = {R.drawable.ic_contacts_black_24dp, R.drawable.ic_textsms_black_24dp};
 
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -29,16 +32,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return PAGE_COUNT;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "SECTION 1";
+                return "Contacts";
             case 1:
-                return "SECTION 2";
+                return "SMS";
         }
         return null;
     }
