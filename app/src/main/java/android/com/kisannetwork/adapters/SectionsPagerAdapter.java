@@ -21,9 +21,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return ContactsFragment.newInstance(position + 1);
+                return ContactsFragment.newInstance();
             case 1:
-                return SentSMSFragment.newInstance(position + 1);
+                return SentSMSFragment.newInstance();
         }
         return null;
     }
