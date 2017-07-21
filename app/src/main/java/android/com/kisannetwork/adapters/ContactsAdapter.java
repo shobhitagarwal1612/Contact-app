@@ -91,7 +91,7 @@ public class ContactsAdapter extends
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onClick(ViewHolder.this);
+                    listener.onClick(getAdapterPosition());
                 }
             });
         }

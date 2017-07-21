@@ -1,10 +1,25 @@
 package android.com.kisannetwork.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by shobhit on 21/7/17.
  */
 
-public class Contact {
+public class Contact implements Parcelable {
+
+    public static final Creator<Contact> CREATOR = new Creator<Contact>() {
+        @Override
+        public Contact createFromParcel(Parcel in) {
+            return new Contact(in);
+        }
+
+        @Override
+        public Contact[] newArray(int size) {
+            return new Contact[size];
+        }
+    };
 
     private int index;
     private String firstName;
@@ -15,6 +30,21 @@ public class Contact {
     private String address;
     private String image;
     private int age;
+
+    public Contact() {
+    }
+
+    protected Contact(Parcel in) {
+        index = in.readInt();
+        firstName = in.readString();
+        lastName = in.readString();
+        phoneNumber = in.readString();
+        email = in.readString();
+        company = in.readString();
+        address = in.readString();
+        image = in.readString();
+        age = in.readInt();
+    }
 
     public int getIndex() {
         return index;
@@ -90,5 +120,23 @@ public class Contact {
 
     public String getName() {
         return firstName + " " + lastName;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(index);
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        dest.writeString(phoneNumber);
+        dest.writeString(email);
+        dest.writeString(company);
+        dest.writeString(address);
+        dest.writeString(image);
+        dest.writeInt(age);
     }
 }

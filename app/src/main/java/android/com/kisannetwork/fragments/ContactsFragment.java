@@ -1,9 +1,11 @@
 package android.com.kisannetwork.fragments;
 
 import android.com.kisannetwork.R;
+import android.com.kisannetwork.activities.ContactDetailsActivity;
 import android.com.kisannetwork.adapters.ContactsAdapter;
 import android.com.kisannetwork.listeners.ClickListener;
 import android.com.kisannetwork.model.Contact;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -93,7 +95,10 @@ public class ContactsFragment extends Fragment implements ClickListener {
     }
 
     @Override
-    public void onClick(ContactsAdapter.ViewHolder viewHolder) {
-
+    public void onClick(int position) {
+        Contact contact = contacts.get(position);
+        Intent intent = new Intent(getActivity(), ContactDetailsActivity.class);
+        intent.putExtra("contact", contact);
+        getActivity().startActivity(intent);
     }
 }
