@@ -63,8 +63,8 @@ public class SentSMSFragment extends Fragment implements DataUpdated {
 
                 MessageHistory messageHistory = new MessageHistory();
                 messageHistory.setName(name);
-                messageHistory.setOtp(otp);
-                messageHistory.setTimeStamp(timeStamp);
+                messageHistory.setOtp("OTP: " + otp);
+                messageHistory.setTimeStamp("Sent at: " + timeStamp);
 
                 messageList.add(messageHistory);
                 adapter.setList(messageList);
