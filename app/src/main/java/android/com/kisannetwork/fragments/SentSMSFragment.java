@@ -6,6 +6,7 @@ import android.com.kisannetwork.database.DbUtils;
 import android.com.kisannetwork.database.MessagesHistory;
 import android.com.kisannetwork.listeners.DataUpdated;
 import android.com.kisannetwork.model.MessageHistory;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,15 +43,14 @@ public class SentSMSFragment extends Fragment implements DataUpdated {
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new MessagesAdapter(getContext(), messageList);
-        loadDataFromDb();
-
+        loadDataFromDb(getContext());
         return rootView;
     }
 
-    private void loadDataFromDb() {
+    private void loadDataFromDb(Context context) {
         messageList = new ArrayList<>();
 
-        Cursor cursor = DbUtils.getMessagesHistoryCursor(getContext());
+        Cursor cursor = DbUtils.getMessagesHistoryCursor(context);
         try {
             while (cursor.moveToNext()) {
 
@@ -67,10 +67,11 @@ public class SentSMSFragment extends Fragment implements DataUpdated {
                 messageHistory.setTimeStamp("Sent at: " + timeStamp);
 
                 messageList.add(messageHistory);
-                adapter.setList(messageList);
-                recyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
             }
+
+            adapter.setList(messageList);
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         } finally {
@@ -81,7 +82,7 @@ public class SentSMSFragment extends Fragment implements DataUpdated {
     }
 
     @Override
-    public void update() {
-        loadDataFromDb();
+    public void update(Context baseContext) {
+        loadDataFromDb(baseContext);
     }
 }

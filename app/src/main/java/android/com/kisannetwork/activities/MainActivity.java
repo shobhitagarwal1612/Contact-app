@@ -49,8 +49,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 if (position == 1) {
-                    DataUpdated listener = (DataUpdated) fragments[1];
-                    listener.update();
+                    try {
+                        DataUpdated listener = (DataUpdated) fragments[1];
+                        listener.update(getBaseContext());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
