@@ -23,6 +23,11 @@
         <activity
             android:name=".activities.ContactDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".activities.SendMessageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

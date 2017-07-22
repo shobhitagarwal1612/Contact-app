@@ -3,7 +3,6 @@ package android.com.kisannetwork.activities;
 import android.com.kisannetwork.R;
 import android.com.kisannetwork.model.Contact;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +26,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         toolbar.setTitle("Contact details");
         setSupportActionBar(toolbar);
 
-        Contact contact = getIntent().getExtras().getParcelable("contact");
+        final Contact contact = getIntent().getExtras().getParcelable("contact");
 
         TextView name = (TextView) findViewById(R.id.name);
         TextView phone = (TextView) findViewById(R.id.phone);
@@ -47,9 +46,13 @@ public class ContactDetailsActivity extends AppCompatActivity {
         message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent("android.intent.action.VIEW");
+                /*Intent intent = new Intent("android.intent.action.VIEW");
                 Uri data = Uri.parse("sms:");
                 intent.setData(data);
+                startActivity(intent);*/
+
+                Intent intent = new Intent(ContactDetailsActivity.this, SendMessageActivity.class);
+                intent.putExtra("contact", contact);
                 startActivity(intent);
             }
         });
