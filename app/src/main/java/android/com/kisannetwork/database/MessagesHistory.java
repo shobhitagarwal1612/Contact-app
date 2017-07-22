@@ -37,8 +37,8 @@ public final class MessagesHistory {
 
     public static class MessagesDbHelper extends SQLiteOpenHelper {
         // If you change the database schema, you must increment the database version.
-        public static final int DATABASE_VERSION = 1;
-        public static final String DATABASE_NAME = "MessagesHistory.db";
+        static final int DATABASE_VERSION = 1;
+        static final String DATABASE_NAME = "MessagesHistory.db";
 
         public MessagesDbHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -59,5 +59,4 @@ public final class MessagesHistory {
             onUpgrade(db, oldVersion, newVersion);
         }
     }
-
 }

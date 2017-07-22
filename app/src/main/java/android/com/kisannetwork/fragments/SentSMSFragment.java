@@ -1,14 +1,12 @@
 package android.com.kisannetwork.fragments;
 
 import android.com.kisannetwork.R;
-import android.com.kisannetwork.activities.ContactDetailsActivity;
 import android.com.kisannetwork.adapters.MessagesAdapter;
+import android.com.kisannetwork.database.DbUtils;
 import android.com.kisannetwork.database.MessagesHistory;
-import android.com.kisannetwork.listeners.ClickListener;
-import android.com.kisannetwork.model.Contact;
-import android.content.Intent;
+import android.com.kisannetwork.listeners.DataUpdated;
+import android.com.kisannetwork.model.MessageHistory;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,22 +15,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by shobhit on 21/7/17.
  */
 
-public class SentSMSFragment extends Fragment implements ClickListener {
+public class SentSMSFragment extends Fragment implements DataUpdated {
 
-    ArrayList<Contact> contacts;
+    ArrayList<MessageHistory> messageList;
+    private RecyclerView recyclerView;
+    private MessagesAdapter adapter;
 
     public SentSMSFragment() {
 
@@ -46,103 +39,49 @@ public class SentSMSFragment extends Fragment implements ClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-
-        loadData();
-
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new MessagesAdapter(getContext(), messageList);
         loadDataFromDb();
 
-        MessagesAdapter adapter = new MessagesAdapter(getContext(), contacts, this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return rootView;
     }
 
     private void loadDataFromDb() {
-        MessagesHistory.MessagesDbHelper dbHelper = new MessagesHistory.MessagesDbHelper(getContext());
+        messageList = new ArrayList<>();
 
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        // Define a projection that specifies which columns from the database
-        // you will actually use after this query.
-        String[] projection = {
-                MessagesHistory.MessageEntry._ID,
-                MessagesHistory.MessageEntry.COLUMN_NAME_CONTACT_NAME,
-                MessagesHistory.MessageEntry.COLUMN_NAME_OTP,
-                MessagesHistory.MessageEntry.COLUMN_NAME_TIME
-        };
-
-        // How you want the results sorted in the resulting Cursor
-        String sortOrder =
-                MessagesHistory.MessageEntry.COLUMN_NAME_TIME + " DESC";
-
-        Cursor cursor = db.query(
-                MessagesHistory.MessageEntry.TABLE_NAME,                     // The table to query
-                projection,                               // The columns to return
-                null,                                // The columns for the WHERE clause
-                null,                            // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
-        );
-
-        List itemIds = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            long itemId = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(MessagesHistory.MessageEntry._ID));
-            itemIds.add(itemId);
-        }
-        cursor.close();
-    }
-
-    private void loadData() {
+        Cursor cursor = DbUtils.getMessagesHistoryCursor(getContext());
         try {
-            contacts = new ArrayList<>();
-            JSONArray jsonArray = new JSONArray(loadJSONFromAsset());
+            while (cursor.moveToNext()) {
 
-            Contact contact;
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject object = jsonArray.getJSONObject(i);
+                String name = cursor.getString(
+                        cursor.getColumnIndexOrThrow(MessagesHistory.MessageEntry.COLUMN_NAME_CONTACT_NAME));
+                String otp = cursor.getString(
+                        cursor.getColumnIndexOrThrow(MessagesHistory.MessageEntry.COLUMN_NAME_OTP));
+                String timeStamp = cursor.getString(
+                        cursor.getColumnIndexOrThrow(MessagesHistory.MessageEntry.COLUMN_NAME_TIME));
 
-                contact = new Contact();
-                contact.setAddress(object.getString("address"));
-                contact.setPhoneNumber(object.getString("phone"));
-                contact.setEmail(object.getString("email"));
-                contact.setCompany(object.getString("company"));
-                contact.setFirstName(object.getJSONObject("name").getString("first"));
-                contact.setLastName(object.getJSONObject("name").getString("last"));
-                contact.setAge(object.getInt("age"));
-                contact.setImage(object.getString("picture"));
-                contact.setIndex(object.getInt("index"));
+                MessageHistory messageHistory = new MessageHistory();
+                messageHistory.setName(name);
+                messageHistory.setOtp(otp);
+                messageHistory.setTimeStamp(timeStamp);
 
-                contacts.add(contact);
+                messageList.add(messageHistory);
+                adapter.setList(messageList);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
-        } catch (JSONException e) {
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
+        } finally {
+            if (!cursor.isClosed()) {
+                cursor.close();
+            }
         }
-    }
-
-    public String loadJSONFromAsset() {
-        String json;
-        try {
-            InputStream is = getActivity().getAssets().open("contacts.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
     }
 
     @Override
-    public void onClick(int position) {
-        Contact contact = contacts.get(position);
-        Intent intent = new Intent(getActivity(), ContactDetailsActivity.class);
-        intent.putExtra("contact", contact);
-        getActivity().startActivity(intent);
+    public void update() {
+        loadDataFromDb();
     }
 }

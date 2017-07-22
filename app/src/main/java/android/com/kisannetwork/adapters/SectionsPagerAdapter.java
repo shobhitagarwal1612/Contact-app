@@ -5,32 +5,27 @@ package android.com.kisannetwork.adapters;
  */
 
 
-import android.com.kisannetwork.fragments.ContactsFragment;
-import android.com.kisannetwork.fragments.SentSMSFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    public SectionsPagerAdapter(FragmentManager fm) {
+    private final Fragment[] fragments;
+
+    public SectionsPagerAdapter(FragmentManager fm, Fragment[] fragments) {
         super(fm);
+        this.fragments = fragments;
     }
 
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                return ContactsFragment.newInstance();
-            case 1:
-                return SentSMSFragment.newInstance();
-        }
-        return null;
+        return fragments[position];
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return fragments.length;
     }
 
     @Override
