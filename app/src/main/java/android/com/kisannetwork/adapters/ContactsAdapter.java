@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -60,8 +59,6 @@ public class ContactsAdapter extends
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
         textView.setText(contact.getName());
-        Button button = viewHolder.messageButton;
-        button.setText("Message");
     }
 
     // Returns the total count of items in the list
@@ -76,7 +73,6 @@ public class ContactsAdapter extends
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         TextView nameTextView;
-        Button messageButton;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -86,7 +82,6 @@ public class ContactsAdapter extends
             super(itemView);
 
             nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
-            messageButton = (Button) itemView.findViewById(R.id.message_button);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
