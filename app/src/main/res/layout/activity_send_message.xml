@@ -51,7 +51,7 @@
             android:layout_below="@+id/message"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="77dp"
-            android:text="Send Message" />
+            android:text="@string/send_message" />
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

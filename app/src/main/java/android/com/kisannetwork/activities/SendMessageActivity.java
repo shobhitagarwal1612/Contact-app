@@ -29,7 +29,7 @@ public class SendMessageActivity extends AppCompatActivity {
         toolbar.setTitle("Send Message to " + contact.getName());
         setSupportActionBar(toolbar);
 
-        message.setText("Hi. Your OTP is:\n" + getRandomSixDigits());
+        message.setText("Hi. Your OTP is: " + getRandomSixDigits());
     }
 
     private String getRandomSixDigits() {
