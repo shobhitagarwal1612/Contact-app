@@ -50,7 +50,6 @@ public class SendMessageActivity extends AppCompatActivity {
                 ContentValues values = new ContentValues();
                 values.put(MessagesHistory.MessageEntry.COLUMN_NAME_CONTACT_NAME, contact.getName());
                 values.put(MessagesHistory.MessageEntry.COLUMN_NAME_OTP, randomNumber);
-                values.put(MessagesHistory.MessageEntry.COLUMN_NAME_TIME, " time('now') ");
 
                 // Insert the new row, returning the primary key value of the new row
                 long newRowId = db.insert(MessagesHistory.MessageEntry.TABLE_NAME, null, values);
