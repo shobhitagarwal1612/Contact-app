@@ -29,21 +29,25 @@ public class ContactDetailsActivity extends AppCompatActivity {
         final Contact contact = getIntent().getExtras().getParcelable("contact");
 
         TextView name = (TextView) findViewById(R.id.name);
-        TextView phone = (TextView) findViewById(R.id.phone);
-        TextView email = (TextView) findViewById(R.id.email);
-        TextView address = (TextView) findViewById(R.id.address);
-        TextView age = (TextView) findViewById(R.id.age);
-        TextView company = (TextView) findViewById(R.id.company);
-        LinearLayout message = (LinearLayout) findViewById(R.id.message);
-
         name.setText(contact.getName());
+
+        TextView phone = (TextView) findViewById(R.id.phone);
         phone.setText(contact.getPhoneNumber());
+
+        TextView email = (TextView) findViewById(R.id.email);
         email.setText(contact.getEmail());
+
+        TextView address = (TextView) findViewById(R.id.address);
         address.setText(contact.getAddress());
+
+        TextView age = (TextView) findViewById(R.id.age);
         age.setText(String.valueOf(contact.getAge()));
+
+        TextView company = (TextView) findViewById(R.id.company);
         company.setText(contact.getCompany());
 
-        message.setOnClickListener(new View.OnClickListener() {
+        LinearLayout sendMessage = (LinearLayout) findViewById(R.id.message);
+        sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ContactDetailsActivity.this, SendMessageActivity.class);

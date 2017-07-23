@@ -30,15 +30,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final Fragment fragments[] = {ContactsFragment.newInstance(), SentSMSFragment.newInstance()};
+        final Fragment[] fragments = {ContactsFragment.newInstance(), SentSMSFragment.newInstance()};
 
         // Create the adapter that will return a fragment for each of the
         // primary sections of the activity.
-        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), fragments);
+        SectionsPagerAdapter pagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), fragments);
 
         // Set up the ViewPager with the sections adapter.
         viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setAdapter(mSectionsPagerAdapter);
+        viewPager.setAdapter(pagerAdapter);
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

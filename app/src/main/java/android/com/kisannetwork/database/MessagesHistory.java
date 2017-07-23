@@ -12,11 +12,11 @@ import android.provider.BaseColumns;
 public final class MessagesHistory {
 
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + MessageEntry.TABLE_NAME + " (" +
-                    MessageEntry._ID + " INTEGER PRIMARY KEY," +
-                    MessageEntry.COLUMN_NAME_CONTACT_NAME + " TEXT," +
-                    MessageEntry.COLUMN_NAME_OTP + " TEXT," +
-                    MessageEntry.COLUMN_NAME_TIME + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
+            "CREATE TABLE " + MessageEntry.TABLE_NAME + " ("
+                    + MessageEntry._ID + " INTEGER PRIMARY KEY,"
+                    + MessageEntry.COLUMN_NAME_CONTACT_NAME + " TEXT,"
+                    + MessageEntry.COLUMN_NAME_OTP + " TEXT,"
+                    + MessageEntry.COLUMN_NAME_TIME + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + MessageEntry.TABLE_NAME;
