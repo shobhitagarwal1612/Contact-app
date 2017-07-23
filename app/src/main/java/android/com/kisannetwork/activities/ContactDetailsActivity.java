@@ -26,6 +26,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         toolbar.setTitle("Contact details");
         setSupportActionBar(toolbar);
 
+        // getting the extras from the intent
         final Contact contact = getIntent().getExtras().getParcelable("contact");
 
         TextView name = (TextView) findViewById(R.id.name);
@@ -47,6 +48,8 @@ public class ContactDetailsActivity extends AppCompatActivity {
         company.setText(contact.getCompany());
 
         LinearLayout sendMessage = (LinearLayout) findViewById(R.id.message);
+
+        // send message to the contact
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
