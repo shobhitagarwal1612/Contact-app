@@ -20,8 +20,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String POSITION = "POSITION";
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -84,17 +82,5 @@ public class MainActivity extends AppCompatActivity {
         tabTwo.setText(R.string.message_history);
         tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_history_white_24dp, 0, 0);
         tabLayout.getTabAt(1).setCustomView(tabTwo);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt(POSITION, tabLayout.getSelectedTabPosition());
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        viewPager.setCurrentItem(savedInstanceState.getInt(POSITION));
     }
 }
