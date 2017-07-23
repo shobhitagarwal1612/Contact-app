@@ -1,4 +1,4 @@
-package android.com.kisannetwork.model;
+package com.example.kisannetwork.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

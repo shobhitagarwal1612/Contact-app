@@ -1,10 +1,5 @@
-package android.com.kisannetwork.fragments;
+package com.example.kisannetwork.fragments;
 
-import android.com.kisannetwork.R;
-import android.com.kisannetwork.activities.ContactDetailsActivity;
-import android.com.kisannetwork.adapters.ContactsAdapter;
-import android.com.kisannetwork.listeners.ClickListener;
-import android.com.kisannetwork.model.Contact;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.kisannetwork.R;
+import com.example.kisannetwork.activities.ContactDetailsActivity;
+import com.example.kisannetwork.adapters.ContactsAdapter;
+import com.example.kisannetwork.listeners.ClickListener;
+import com.example.kisannetwork.model.Contact;
 
 import org.json.JSONArray;
 import org.json.JSONException;

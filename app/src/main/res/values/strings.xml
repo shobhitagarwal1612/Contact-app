@@ -12,4 +12,5 @@
     <string name="otp_success">OTP Sent to +919971792703!</string>
     <string name="otp_body">Hi. Your OTP is: %s</string>
     <string name="otp_title">Send OTP: %s</string>
+    <string name="contact_details_title">Contact details</string>
 </resources>

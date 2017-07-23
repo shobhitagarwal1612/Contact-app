@@ -1,4 +1,4 @@
-package android.com.kisannetwork;
+package com.example.kisannetwork;
 
 /**
  * Created by shobhit on 23/7/17.

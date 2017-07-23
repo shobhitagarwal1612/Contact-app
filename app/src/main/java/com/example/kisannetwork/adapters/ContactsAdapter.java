@@ -1,14 +1,15 @@
-package android.com.kisannetwork.adapters;
+package com.example.kisannetwork.adapters;
 
-import android.com.kisannetwork.R;
-import android.com.kisannetwork.listeners.ClickListener;
-import android.com.kisannetwork.model.Contact;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.kisannetwork.R;
+import com.example.kisannetwork.listeners.ClickListener;
+import com.example.kisannetwork.model.Contact;
 
 import java.util.List;
 

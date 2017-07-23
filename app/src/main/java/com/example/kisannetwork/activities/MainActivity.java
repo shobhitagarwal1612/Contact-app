@@ -1,10 +1,5 @@
-package android.com.kisannetwork.activities;
+package com.example.kisannetwork.activities;
 
-import android.com.kisannetwork.R;
-import android.com.kisannetwork.adapters.SectionsPagerAdapter;
-import android.com.kisannetwork.fragments.ContactsFragment;
-import android.com.kisannetwork.fragments.SentSMSFragment;
-import android.com.kisannetwork.listeners.DataUpdated;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,6 +10,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.example.kisannetwork.R;
+import com.example.kisannetwork.adapters.SectionsPagerAdapter;
+import com.example.kisannetwork.fragments.ContactsFragment;
+import com.example.kisannetwork.fragments.SentSMSFragment;
+import com.example.kisannetwork.listeners.DataUpdated;
 
 public class MainActivity extends AppCompatActivity {
 

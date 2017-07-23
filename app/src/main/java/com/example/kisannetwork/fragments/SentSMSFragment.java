@@ -1,11 +1,5 @@
-package android.com.kisannetwork.fragments;
+package com.example.kisannetwork.fragments;
 
-import android.com.kisannetwork.R;
-import android.com.kisannetwork.adapters.MessagesAdapter;
-import android.com.kisannetwork.database.DbUtils;
-import android.com.kisannetwork.database.MessagesHistory;
-import android.com.kisannetwork.listeners.DataUpdated;
-import android.com.kisannetwork.model.MessageHistory;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,6 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.kisannetwork.R;
+import com.example.kisannetwork.adapters.MessagesAdapter;
+import com.example.kisannetwork.database.DbUtils;
+import com.example.kisannetwork.database.MessagesHistory;
+import com.example.kisannetwork.listeners.DataUpdated;
+import com.example.kisannetwork.model.MessageHistory;
 
 import java.util.ArrayList;
 

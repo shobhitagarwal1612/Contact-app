@@ -1,4 +1,4 @@
-package android.com.kisannetwork.database;
+package com.example.kisannetwork.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

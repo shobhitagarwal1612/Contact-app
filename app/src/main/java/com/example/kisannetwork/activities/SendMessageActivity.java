@@ -1,8 +1,5 @@
-package android.com.kisannetwork.activities;
+package com.example.kisannetwork.activities;
 
-import android.com.kisannetwork.R;
-import android.com.kisannetwork.database.MessagesHistory;
-import android.com.kisannetwork.model.Contact;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,6 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.kisannetwork.Constants;
+import com.example.kisannetwork.R;
+import com.example.kisannetwork.database.MessagesHistory;
+import com.example.kisannetwork.model.Contact;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -24,9 +26,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
-import static android.com.kisannetwork.Constants.ACCOUNT_SID;
-import static android.com.kisannetwork.Constants.AUTH_TOKEN;
 
 /**
  * Created by shobhit on 22/7/17.
@@ -118,9 +117,9 @@ public class SendMessageActivity extends AppCompatActivity {
     }
 
     Call post(Callback callback) {
-        String url = "https://api.twilio.com/2010-04-01/Accounts/" + ACCOUNT_SID + "/SMS/Messages";
+        String url = "https://api.twilio.com/2010-04-01/Accounts/" + Constants.ACCOUNT_SID + "/SMS/Messages";
         String base64EncodedCredentials = "Basic "
-                + Base64.encodeToString((ACCOUNT_SID + ":" + AUTH_TOKEN).getBytes(), Base64.NO_WRAP);
+                + Base64.encodeToString((Constants.ACCOUNT_SID + ":" + Constants.AUTH_TOKEN).getBytes(), Base64.NO_WRAP);
 
         RequestBody formBody = new FormBody.Builder()
                 .add("From", "+13014175933")
