@@ -25,14 +25,15 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static android.com.kisannetwork.Constants.ACCOUNT_SID;
+import static android.com.kisannetwork.Constants.AUTH_TOKEN;
+
 /**
  * Created by shobhit on 22/7/17.
  */
 
 public class SendMessageActivity extends AppCompatActivity {
 
-    private static final String ACCOUNT_SID = "ACe0b238b269adc92973d35be7397373c3";
-    private static final String AUTH_TOKEN = "5bfefc3693e495edde3019892cc00fc2";
     OkHttpClient client = new OkHttpClient();
     private EditText message;
     private Contact contact;
@@ -48,12 +49,12 @@ public class SendMessageActivity extends AppCompatActivity {
         Button sendButton = (Button) findViewById(R.id.button);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Send OTP: " + contact.getName());
+        toolbar.setTitle(String.format(getString(R.string.otp_title), contact.getName()));
         setSupportActionBar(toolbar);
 
         final String randomNumber = getRandomSixDigits();
 
-        message.setText("Hi. Your OTP is: " + randomNumber);
+        message.setText(String.format(getString(R.string.otp_body), randomNumber));
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +71,12 @@ public class SendMessageActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Failed to send OTP :(", Toast.LENGTH_SHORT).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), R.string.otp_failure, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
@@ -78,7 +84,7 @@ public class SendMessageActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "OTP Sent to +919971792703!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.otp_success, Toast.LENGTH_LONG).show();
                         saveToDB(randomNumber);
                         SendMessageActivity.this.finish();
                     }
@@ -113,7 +119,8 @@ public class SendMessageActivity extends AppCompatActivity {
 
     Call post(Callback callback) {
         String url = "https://api.twilio.com/2010-04-01/Accounts/" + ACCOUNT_SID + "/SMS/Messages";
-        String base64EncodedCredentials = "Basic " + Base64.encodeToString((ACCOUNT_SID + ":" + AUTH_TOKEN).getBytes(), Base64.NO_WRAP);
+        String base64EncodedCredentials = "Basic "
+                + Base64.encodeToString((ACCOUNT_SID + ":" + AUTH_TOKEN).getBytes(), Base64.NO_WRAP);
 
         RequestBody formBody = new FormBody.Builder()
                 .add("From", "+13014175933")
