@@ -8,4 +8,8 @@
     <string name="address">ADDRESS</string>
     <string name="age">AGE</string>
     <string name="phone">PHONE</string>
+    <string name="otp_failure">Failed to send OTP :( Check your internet connection</string>
+    <string name="otp_success">OTP Sent to +919971792703!</string>
+    <string name="otp_body">Hi. Your OTP is: %s</string>
+    <string name="otp_title">Send OTP: %s</string>
 </resources>
