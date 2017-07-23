@@ -46,11 +46,6 @@ public class ContactDetailsActivity extends AppCompatActivity {
         message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent("android.intent.action.VIEW");
-                Uri data = Uri.parse("sms:");
-                intent.setData(data);
-                startActivity(intent);*/
-
                 Intent intent = new Intent(ContactDetailsActivity.this, SendMessageActivity.class);
                 intent.putExtra("contact", contact);
                 startActivity(intent);
