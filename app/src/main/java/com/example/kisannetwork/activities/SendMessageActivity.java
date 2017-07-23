@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,6 +18,9 @@ import com.example.kisannetwork.model.Contact;
 
 import java.io.IOException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -33,40 +35,20 @@ import okhttp3.Response;
 
 public class SendMessageActivity extends AppCompatActivity {
 
+    @BindView(R.id.message)
+    EditText message;
+
     OkHttpClient client = new OkHttpClient();
-    private EditText message;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     private Contact contact;
+    private String randomNumber;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send_message);
-
-        contact = getIntent().getExtras().getParcelable("contact");
-
-        message = (EditText) findViewById(R.id.message);
-        Button sendButton = (Button) findViewById(R.id.button);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(String.format(getString(R.string.otp_title), contact.getName()));
-        setSupportActionBar(toolbar);
-
-        final String randomNumber = getRandomSixDigits();
-
-        message.setText(String.format(getString(R.string.otp_body), randomNumber));
-
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendOTP(randomNumber);
-            }
-        });
-    }
-
-    private void sendOTP(final String randomNumber) {
+    @OnClick(R.id.button)
+    public void sendMessage(View view) {
 
         post(new Callback() {
-
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -92,6 +74,23 @@ public class SendMessageActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_send_message);
+        ButterKnife.bind(this);
+
+        // get the extras from the intent
+        contact = getIntent().getExtras().getParcelable("contact");
+
+        toolbar.setTitle(String.format(getString(R.string.otp_title), contact.getName()));
+        setSupportActionBar(toolbar);
+
+        randomNumber = getRandomSixDigits();
+
+        message.setText(String.format(getString(R.string.otp_body), randomNumber));
+    }
+
     private void saveToDB(String randomNumber) {
         MessagesHistory.MessagesDbHelper dbHelper = new MessagesHistory.MessagesDbHelper(getBaseContext());
 
@@ -107,7 +106,7 @@ public class SendMessageActivity extends AppCompatActivity {
         long newRowId = db.insert(MessagesHistory.MessageEntry.TABLE_NAME, null, values);
 
         if (newRowId != -1) {
-            Toast.makeText(getBaseContext(), "Message saved to history", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), R.string.message_saved, Toast.LENGTH_SHORT).show();
         }
     }
 
