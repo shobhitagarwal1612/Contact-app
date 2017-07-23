@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Kisan Network</string>
-    <string name="action_settings">Settings</string>
     <string name="send_message">Send Message</string>
     <string name="mobile">MOBILE</string>
     <string name="email">EMAIL</string>
@@ -13,4 +12,6 @@
     <string name="otp_body">Hi. Your OTP is: %s</string>
     <string name="otp_title">Send OTP: %s</string>
     <string name="contact_details_title">Contact details</string>
+    <string name="message_history">Message History</string>
+    <string name="contacts">Contacts</string>
 </resources>
