@@ -38,7 +38,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#50A7B3"
+                android:background="@color/labelHeader"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="10dp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@android:color/white"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -72,14 +72,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:text="PHONE"
-                    android:textColor="#50A7B3"
+                    android:text="@string/phone"
+                    android:textColor="@color/labelHeader"
                     android:textSize="20sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#728C93" />
+                    android:background="@color/divider" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_weight="0.60"
@@ -100,14 +100,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:textColor="#696969"
+                            android:textColor="@color/labelText"
                             android:textSize="20sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:text="MOBILE"
+                            android:text="@string/mobile"
                             android:textColor="#6D6D6D"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -115,16 +115,25 @@
                     <LinearLayout
                         android:id="@+id/message"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="end"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="5dp">
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:padding="5dp"
                             android:src="@drawable/ic_textsms_black_24dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/send_message"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/labelText"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -133,14 +142,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp"
-                    android:text="EMAIL"
-                    android:textColor="#50A7B3"
-                    android:textSize="20dp" />
+                    android:text="@string/email"
+                    android:textColor="@color/labelHeader"
+                    android:textSize="20sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#728C93" />
+                    android:background="@color/divider" />
 
                 <TextView
                     android:id="@+id/email"
@@ -148,8 +157,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="#696969"
-                    android:textSize="20dp" />
+                    android:textColor="@color/labelText"
+                    android:textSize="20sp" />
 
 
                 <TextView
@@ -157,14 +166,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp"
-                    android:text="COMPANY"
-                    android:textColor="#50A7B3"
+                    android:text="@string/company"
+                    android:textColor="@color/labelHeader"
                     android:textSize="20sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#728C93" />
+                    android:background="@color/divider" />
 
                 <TextView
                     android:id="@+id/company"
@@ -172,7 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="#696969"
+                    android:textColor="@color/labelText"
                     android:textSize="20sp" />
 
                 <TextView
@@ -180,14 +189,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp"
-                    android:text="ADDRESS"
-                    android:textColor="#50A7B3"
+                    android:text="@string/address"
+                    android:textColor="@color/labelHeader"
                     android:textSize="20sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#728C93" />
+                    android:background="@color/divider" />
 
                 <TextView
                     android:id="@+id/address"
@@ -195,7 +204,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="#696969"
+                    android:textColor="@color/labelText"
                     android:textSize="20sp" />
 
                 <TextView
@@ -203,14 +212,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp"
-                    android:text="AGE"
-                    android:textColor="#50A7B3"
+                    android:text="@string/age"
+                    android:textColor="@color/labelHeader"
                     android:textSize="20sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#728C93" />
+                    android:background="@color/divider" />
 
                 <TextView
                     android:id="@+id/age"
@@ -218,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="#696969"
+                    android:textColor="@color/labelText"
                     android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>

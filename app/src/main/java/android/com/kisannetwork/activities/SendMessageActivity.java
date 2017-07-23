@@ -78,8 +78,9 @@ public class SendMessageActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "OTP Sent!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "OTP Sent to +919971792703!", Toast.LENGTH_LONG).show();
                         saveToDB(randomNumber);
+                        SendMessageActivity.this.finish();
                     }
                 });
             }
