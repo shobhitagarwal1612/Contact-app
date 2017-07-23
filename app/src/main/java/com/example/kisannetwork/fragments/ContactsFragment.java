@@ -23,13 +23,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by shobhit on 21/7/17.
  */
 
 public class ContactsFragment extends Fragment implements ClickListener {
 
+    private static final String MOCK_CONTACT_FILE = "contacts.json";
     ArrayList<Contact> contacts;
+
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
 
     public ContactsFragment() {
     }
@@ -42,11 +49,11 @@ public class ContactsFragment extends Fragment implements ClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        ButterKnife.bind(this, rootView);
 
         loadData();
 
-        ContactsAdapter adapter = new ContactsAdapter(getContext(), contacts, this);
+        ContactsAdapter adapter = new ContactsAdapter(contacts, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return rootView;
@@ -82,7 +89,7 @@ public class ContactsFragment extends Fragment implements ClickListener {
     public String loadJSONFromAsset() {
         String json;
         try {
-            InputStream is = getActivity().getAssets().open("contacts.json");
+            InputStream is = getActivity().getAssets().open(MOCK_CONTACT_FILE);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);

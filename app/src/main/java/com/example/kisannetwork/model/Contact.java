@@ -34,7 +34,7 @@ public class Contact implements Parcelable {
     public Contact() {
     }
 
-    protected Contact(Parcel in) {
+    private Contact(Parcel in) {
         index = in.readInt();
         firstName = in.readString();
         lastName = in.readString();

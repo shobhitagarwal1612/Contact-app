@@ -13,30 +13,25 @@ import com.example.kisannetwork.model.Contact;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by shobhit on 21/7/17.
  */
 
-// Create the basic adapter extending from RecyclerView.Adapter
-// Note that we specify the custom ViewHolder which gives us access to our views
+// Create the basic adapter extending from RecyclerView.Adapter for contacts recycler view
 public class ContactsAdapter extends
         RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
 
 
     private final ClickListener listener;
     private List<Contact> contacts;
-    private Context context;
 
     // Pass in the contact array into the constructor
-    public ContactsAdapter(Context context, List<Contact> contacts, ClickListener listener) {
+    public ContactsAdapter(List<Contact> contacts, ClickListener listener) {
         this.contacts = contacts;
-        this.context = context;
         this.listener = listener;
-    }
-
-    // Easy access to the context object in the recyclerview
-    private Context getContext() {
-        return context;
     }
 
     @Override
@@ -58,8 +53,7 @@ public class ContactsAdapter extends
         Contact contact = contacts.get(position);
 
         // Set item views based on your views and data model
-        TextView textView = viewHolder.nameTextView;
-        textView.setText(contact.getName());
+        viewHolder.textView.setText(contact.getName());
     }
 
     // Returns the total count of items in the list
@@ -70,19 +64,14 @@ public class ContactsAdapter extends
 
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        // Your holder should contain a member variable
-        // for any view that will be set as you render a row
-        TextView nameTextView;
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each subview
+        @BindView(R.id.contact_name)
+        TextView textView;
+
         ViewHolder(View itemView) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
             super(itemView);
-
-            nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
+            ButterKnife.bind(this, itemView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

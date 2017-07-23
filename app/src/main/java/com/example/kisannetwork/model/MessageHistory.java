@@ -25,7 +25,7 @@ public class MessageHistory implements Parcelable {
     private String otp;
     private String timeStamp;
 
-    public MessageHistory(Parcel in) {
+    private MessageHistory(Parcel in) {
         name = in.readString();
         otp = in.readString();
         timeStamp = in.readString();

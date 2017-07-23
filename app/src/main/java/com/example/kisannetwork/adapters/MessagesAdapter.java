@@ -12,31 +12,25 @@ import com.example.kisannetwork.model.MessageHistory;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by shobhit on 21/7/17.
  */
 
-// Create the basic adapter extending from RecyclerView.Adapter
-// Note that we specify the custom ViewHolder which gives us access to our views
+// Create the basic adapter extending from RecyclerView.Adapter for message history recycler view
 public class MessagesAdapter extends
         RecyclerView.Adapter<MessagesAdapter.ViewHolder> {
 
     private ArrayList<MessageHistory> arrayList;
-    private Context context;
 
-    // Pass in the contact array into the constructor
-    public MessagesAdapter(Context context, ArrayList<MessageHistory> arrayList) {
+    public MessagesAdapter(ArrayList<MessageHistory> arrayList) {
         this.arrayList = arrayList;
-        this.context = context;
     }
 
     public void setList(ArrayList<MessageHistory> list) {
         arrayList = list;
-    }
-
-    // Easy access to the context object in the recyclerview
-    private Context getContext() {
-        return context;
     }
 
     @Override
@@ -69,26 +63,17 @@ public class MessagesAdapter extends
         return arrayList.size();
     }
 
-    // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
     class ViewHolder extends RecyclerView.ViewHolder {
-        // Your holder should contain a member variable
-        // for any view that will be set as you render a row
+        @BindView(R.id.name)
         TextView name;
+        @BindView(R.id.otp)
         TextView otp;
+        @BindView(R.id.time)
         TextView timeStamp;
 
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each subview
         ViewHolder(View itemView) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
             super(itemView);
-
-            name = (TextView) itemView.findViewById(R.id.name);
-            otp = (TextView) itemView.findViewById(R.id.otp);
-            timeStamp = (TextView) itemView.findViewById(R.id.time);
-
+            ButterKnife.bind(this, itemView);
         }
     }
 }

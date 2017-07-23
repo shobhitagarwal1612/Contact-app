@@ -19,6 +19,9 @@ import com.example.kisannetwork.model.MessageHistory;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by shobhit on 21/7/17.
  */
@@ -26,7 +29,8 @@ import java.util.ArrayList;
 public class SentSMSFragment extends Fragment implements DataUpdated {
 
     ArrayList<MessageHistory> messageList;
-    private RecyclerView recyclerView;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
     private MessagesAdapter adapter;
 
     public SentSMSFragment() {
@@ -41,9 +45,10 @@ public class SentSMSFragment extends Fragment implements DataUpdated {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        ButterKnife.bind(this, rootView);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new MessagesAdapter(getContext(), messageList);
+        adapter = new MessagesAdapter(messageList);
         loadDataFromDb(getContext());
         return rootView;
     }

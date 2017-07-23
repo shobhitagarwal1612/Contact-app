@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+// Create the adapter for the view pager
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     private final Fragment[] fragments;
